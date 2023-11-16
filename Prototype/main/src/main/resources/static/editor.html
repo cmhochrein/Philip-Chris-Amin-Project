@@ -6,60 +6,95 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     <style>
-        /* Custom CSS for the menu box */
-        .menu-box {
-            width: 476px;
-            background-color: #ffffff;
-            height: 930px;
-            padding: 20px /* Fill the available vertical space */
-        }
-        /* Adjusting the margin for "Create" and "View" buttons */
-        .menu-box .create-view-button {
-            margin-right: 10px; /* Adjust as needed */
-        }
-        /* Custom CSS for the grid */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
-            grid-gap: 10px; /* Adjust the gap as needed */
-            height: 930px; /* Fill the remaining vertical space */
-            margin-right: 500px; 
-            padding: 10px;
-        }
+/* Custom CSS for the menu box */
+.menu-box {
+    width: 476px;
+    background-color: #f4f4f4; /* Slightly darker grey than the background of the body */
+    height: 930px;
+    padding: 20px; /* Fill the available vertical space */
+}
 
-        .grid-item {
-            background-color: #e9ecef; /* Background color for each pane */
-            padding: 20px; /* Add some padding to each pane */
-            text-align: center;
-            width: 455px; /* Make each grid item fill the available width within its column */
-        }
+/* Adjusting the margin for "Create" and "View" buttons */
+.menu-box .create-view-button {
+    margin-top: 16px; /* Adjust the top margin for spacing */
+}
 
-        /* Custom CSS for the moderation dashboard */
-        .request-list {
-            list-style: none;
-            padding: 0;
-            display: none; /* Initially hide the request-list */
-        }
+/* Custom CSS for the moderation dashboard */
+.request-list {
+    list-style: none;
+    padding: 0;
+    display: none; /* Initially hide the request-list */
+}
 
-        .request-item {
-            background-color: #e9ecef;
-            padding: 20px;
-            margin-bottom: 10px;
-        }
+.request-item {
+    background-color: #e9ecef;
+    padding: 20px;
+    margin-bottom: 10px;
+}
 
-        .status-btn {
-            margin-left: 10px;
-        }
+.status-btn {
+    margin-left: 10px;
+}
 
-        /* Custom CSS for the user-input form */
-        .user-input-form {
-            display: none; /* Initially hide the form */
-            margin-top: 20px;
-        }
+/* Custom CSS for the user-input form */
+.user-input-form {
+    display: none; /* Initially hide the form */
+    margin-top: 20px;
+}
 
-        .submit-btn {
-            margin-top: 10px;
-        }
+.submit-btn {
+    margin-top: 12px; /* Adjust the top margin for spacing */
+}
+
+/* Updated styles for the menu buttons */
+.menu-box button.btn {
+    width: 100%;
+    margin-bottom: 12px; /* Larger vertical margin */
+    padding: 14px 20px; /* Adjust padding for larger button size */
+    font-weight: bold; /* Set font to bold */
+}
+
+.menu-box button.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.menu-box button.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.menu-box button.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #ffffff; /* White text for dark grey button */
+}
+
+.menu-box button.btn-secondary:hover {
+    background-color: #545b62;
+    border-color: #545b62;
+}
+
+.menu-box button.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.menu-box button.btn-danger:hover {
+    background-color: #bd2130;
+    border-color: #bd2130;
+}
+
+/* Set the background color of the website to gray */
+body {
+    background-color: #f8f9fa;
+}
+
+hr.double {
+ border-top: 3px double;
+ border-bottom: none;
+}
+
     </style>
 </head>
 <body>
@@ -96,8 +131,9 @@
             <div class="col-md-3">
                 <div class="d-flex flex-column align-items-start menu-box">
                     <h2>Welcome, Editor</h2>
-                    <button class="btn btn-primary my-2 d-block" onclick="toggleUserInputForm()">Create Request</button>
-                    <button class="btn btn-primary my-2 d-block">Drafts</button>
+                    <hr class="double">
+                    <button class="btn btn-secondary my-2 d-block create-view-button" onclick="toggleUserInputForm()">Create Request</button>
+                    <button class="btn btn-secondary my-2 d-block create-view-button">Drafts</button>
                     <button class="btn btn-secondary my-2 d-block create-view-button" onclick="toggleRequests()">Moderation Dashboard</button>
                     <button class="btn btn-secondary my-2 d-block create-view-button">Inbox</button>
                     <button class="btn btn-danger mt-auto d-block">Log Out</button>
@@ -119,12 +155,12 @@
                             <label for="requestText">Request Details:</label>
                             <textarea class="form-control" id="requestText" rows="3"></textarea>
                         </div>
-                        <button type="button" class="btn btn-primary submit-btn" onclick="toggleUserInputForm()">Submit</button>
+                        <button type="button" class="btn btn-primary submit-btn" onclick="submitWriterRequest()">Submit</button>
                     </form>
                 </div>
                 <!-- Request List -->
                 <ul class="request-list" id="requestList">
-                    <!-- Sample request item, you can dynamically generate these with server-side code -->
+                    <!-- Sample request item, I'll make them server side generated soon -->
                     <li class="request-item">
                         <h4>Request #1</h4>
                         <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -137,7 +173,7 @@
                         <button class="btn btn-success status-btn">Accept</button>
                         <button class="btn btn-danger status-btn">Deny</button>
                     </li>
-                    <!-- Add more request items as needed -->
+                    <!-- Add more request items here -->
                 </ul>
             </div>
         </div>
