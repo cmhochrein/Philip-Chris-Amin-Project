@@ -27,7 +27,7 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "title", columnDefinition = "VARCHAR")
+    @Column(name = "title", columnDefinition = "VARCHAR(255)")
     private String title;
 
     @Column(name = "request-body", columnDefinition = "LONGTEXT")
