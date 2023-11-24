@@ -1,5 +1,6 @@
 package com.paperpath.demo.requests;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,27 +26,15 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "title", columnDefinition = "VARCHAR")
     private String title;
+
+    @Column(name = "request-body", columnDefinition = "LONGTEXT")
     private String requestBody;
-    
+
     public Request(String title, String requestBody) {
         this.title = title;
         this.requestBody = requestBody;
-    }
-
-    public void SetTitle(String title) {
-        this.title = title;
-    }
-
-    public void SetRequestBody(String requestBody) {
-        this.requestBody = requestBody;
-    }
-
-    public String GetRequestBody() {
-        return this.requestBody;
-    }
-
-    public String GetTitle() {
-        return this.title;
     }
 }

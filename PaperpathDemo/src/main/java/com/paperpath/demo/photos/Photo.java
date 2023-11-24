@@ -11,6 +11,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
@@ -18,6 +22,10 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "photo")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Photo {
 
     @Id
