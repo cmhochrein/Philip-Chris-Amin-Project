@@ -27,7 +27,7 @@ public class PhotoController {
     @Autowired
     PhotoService photoService;
 
-    @GetMapping("/photographer-mainpage")
+    @GetMapping("/mainpage")
     public String getPhotoRequests(Model model) {
         return "photo/photographer";
     }
