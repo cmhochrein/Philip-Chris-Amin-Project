@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.paperpath.demo.photos;
+
+import com.paperpath.demo.requests.Request;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,13 +30,19 @@ public class Photo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "photo_id")
+    private long photoId;
+    
     private String name;
     private String type;
 
     @Lob
     @Column(name = "picture", columnDefinition = "LONGBLOB")
     public byte[] picture;  
+        
+    @OneToOne
+    @PrimaryKeyJoinColumn(name = "photo_id")
+    private Request requestObjInPhoto;
 
     public Photo(String name, String type, byte[] picture) {
         this.name = name;
