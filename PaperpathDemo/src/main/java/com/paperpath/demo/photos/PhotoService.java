@@ -1,5 +1,7 @@
 package com.paperpath.demo.photos;
 
+//import com.paperpath.demo.requests.RequestService;
+import com.paperpath.demo.requests.RequestService;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +16,24 @@ import org.springframework.web.multipart.MultipartFile;
 public class PhotoService {
 
     @Autowired
-    private PhotoRepository repo;
+    private PhotoRepository photoRepo;
+    @Autowired
+    private RequestService requestService;
 
-    public Photo uploadPhoto(MultipartFile picture) throws IOException {
+    /**
+     * Get a single photo by ID
+     *
+     * @param photoId the id associated with a photo in the "photo" table
+     * @return the photo
+     */
+    public Photo getPhoto(long photoId) {
+        return photoRepo.getReferenceById(photoId);
+    }
+
+    public Photo uploadPhoto(long requestId, MultipartFile picture) throws IOException {
         String fileName = StringUtils.cleanPath(picture.getOriginalFilename());
         Photo photo = new Photo(fileName, picture.getContentType(), picture.getBytes());
-
-        return repo.save(photo);
+        requestService.savePhoto(requestId, photo);
+        return photo;
     }
 }

@@ -40,8 +40,7 @@ public class Photo {
     @Column(name = "picture", columnDefinition = "LONGBLOB")
     public byte[] picture;  
         
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "photo_id")
+    @OneToOne(mappedBy = "photoObjInRequest")
     private Request requestObjInPhoto;
 
     public Photo(String name, String type, byte[] picture) {

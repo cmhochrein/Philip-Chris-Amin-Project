@@ -1,21 +1,31 @@
 package com.paperpath.demo.requests;
 
-import com.paperpath.demo.photos.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
  * @author Chris
  */
+@Controller
+@RequestMapping("/request")
 public class RequestController {
 
     @Autowired
-    RequestService requestservice;
+    RequestService requestService;
 
+//    @PostMapping
+//    public String updatePhoto(Request request){
+//       
+//        return "photo/accepted-page";
+//    }
+    
+//    @GetMapping("/update") 
+//    public String updatePhotoPage(@PathVariable long requestId, Model model){
+//        model.addAttribute("request", requestService.getRequest(requestId));
+//        return "photo/photographer";
+//    }
 }
