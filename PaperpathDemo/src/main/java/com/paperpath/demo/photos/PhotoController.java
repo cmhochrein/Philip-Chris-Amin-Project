@@ -26,23 +26,39 @@ public class PhotoController {
     @Autowired
     RequestService requestService;
 
+    /**
+     * Displays the request bulletin populated by all free requests in the
+     * database
+     *
+     * @param model the model
+     * @return photo/photographer
+     */
     @GetMapping("/mainpage")
     public String getPhotoRequests(Model model) {
-        model.addAttribute("requestList", requestService.getAllRequests());
-        return "photo/photographer";
-    }
-
-    // TO-DO: modify this so it is like getPhotoRequests but only for already accepted requests
-    @GetMapping("/active-requests")
-    public String getAcceptedRequests(Model model) {
-        model.addAttribute("requestList", requestService.getAllRequests());
-        return "photo/accepted-page";
+        model.addAttribute("requestList", requestService.getAllFreeRequests());
+        return "photo/bulletin";
     }
 
     /**
+     * Displays the accepted requests page when the user clicks the "view active
+     * requests" button
+     *
+     * @param model the model
+     * @return photo/accepted-page
+     */
+    @GetMapping("/active-requests")
+    public String getActiveRequests(Model model) {
+        model.addAttribute("requestList", requestService.getAllActiveRequests());
+        return "photo/active-page";
+    }
+
+    /**
+     * Displays the "submit-photo" page when a user clicks a request to accept
+     * it.
+     *
      * @param requestId the id associated with a request in the "requests" table
      * @param model the model
-     * @return The photo/submit-photo page populated with the selected request
+     * @return photo/submit-photo
      */
     @GetMapping("/id={requestId}")
     public String accceptRequest(@PathVariable long requestId, Model model) {
@@ -51,15 +67,16 @@ public class PhotoController {
     }
 
     /**
-     * Uploads a photo to the mySQL database
+     * Uploads a photo to the mySQL database, the photo is linked to a specific
+     * request on the database.
      *
      * @param requestId the id associated with a request in the "requests" table
      * @param file the photo to be uploaded
-     * @return the accepted requests page
+     * @return photo/accepted-page
      */
     @PostMapping("/submitphoto/id={requestId}")
     public String uploadImage(@PathVariable long requestId, @RequestParam("image") MultipartFile file) throws IOException {
         photoService.uploadPhoto(requestId, file);
-        return "photo/accepted-page";
+        return "redirect:/photo/active-requests";
     }
 }

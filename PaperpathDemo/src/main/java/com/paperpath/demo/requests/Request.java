@@ -17,10 +17,11 @@ import lombok.Setter;
 
 /**
  *
- * @author Chris
+ * @author Chris This entity is for all requests that have been accepted, and
+ * have a photo associated with them
  */
 @Entity
-@Table(name = "Requests")
+@Table(name = "requests")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -46,8 +47,8 @@ public class Request {
         this.requestBody = requestBody;
         this.photoObjInRequest = photo;
     }
-    
-    public void SetPhoto(Photo photo){
+
+    public void SetPhoto(Photo photo) {
         this.photoObjInRequest = photo;
     }
 }

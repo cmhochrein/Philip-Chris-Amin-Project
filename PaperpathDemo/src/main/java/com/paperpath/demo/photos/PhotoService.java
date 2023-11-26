@@ -1,6 +1,5 @@
 package com.paperpath.demo.photos;
 
-//import com.paperpath.demo.requests.RequestService;
 import com.paperpath.demo.requests.RequestService;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class PhotoService {
     private RequestService requestService;
 
     /**
-     * Get a single photo by ID
+     * Gets a single photo entity by its ID in the database.
      *
      * @param photoId the id associated with a photo in the "photo" table
      * @return the photo
@@ -30,10 +29,19 @@ public class PhotoService {
         return photoRepo.getReferenceById(photoId);
     }
 
-    public Photo uploadPhoto(long requestId, MultipartFile picture) throws IOException {
+    /**
+     * Creates a photo object from a multipart file, and then hands that object
+     * to requestService.savePhoto
+     *
+     * @param requestId The id of the request to link the photo to
+     * @param picture The file object (photo) to be stored on the database
+     * @throws IOException
+     */
+    public void uploadPhoto(long requestId, MultipartFile picture) throws IOException {
+        // Create the photo object 
         String fileName = StringUtils.cleanPath(picture.getOriginalFilename());
         Photo photo = new Photo(fileName, picture.getContentType(), picture.getBytes());
+        // Send it to RequestService to get saved
         requestService.savePhoto(requestId, photo);
-        return photo;
     }
 }
