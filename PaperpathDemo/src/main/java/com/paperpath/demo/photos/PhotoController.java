@@ -35,14 +35,14 @@ public class PhotoController {
     // TO-DO: modify this so it is like getPhotoRequests but only for already accepted requests
     @GetMapping("/active-requests")
     public String getAcceptedRequests(Model model) {
+        model.addAttribute("requestList", requestService.getAllRequests());
         return "photo/accepted-page";
     }
 
     /**
      * @param requestId the id associated with a request in the "requests" table
      * @param model the model
-     * @return The photo/submit-photo page populated 
-     * with the selected request 
+     * @return The photo/submit-photo page populated with the selected request
      */
     @GetMapping("/id={requestId}")
     public String accceptRequest(@PathVariable long requestId, Model model) {
@@ -52,10 +52,11 @@ public class PhotoController {
 
     /**
      * Uploads a photo to the mySQL database
+     *
      * @param requestId the id associated with a request in the "requests" table
      * @param file the photo to be uploaded
      * @return the accepted requests page
-     */ 
+     */
     @PostMapping("/submitphoto/id={requestId}")
     public String uploadImage(@PathVariable long requestId, @RequestParam("image") MultipartFile file) throws IOException {
         photoService.uploadPhoto(requestId, file);

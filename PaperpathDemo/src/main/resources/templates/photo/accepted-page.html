@@ -56,125 +56,46 @@
                 <div class="col mt-3">
                 </div>
             </div>
-            <div class="row mt-1">
-                <div class="col my-3">
-                    <div class="border text-dark text-center p-2" style="background-color: LightGrey">
-                        <h2>Cat image</h2>
-                        <button class="border border-secondary btn btn-info my-2" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#request">
-                            View Details
-                        </button>
-                        <div class="collapse" id="request">
-                            <div class="border my-3">
-                               Looking for a cute picture of a cat
-                            </div>
-                            <div class="my-3">
-                                <img src=”paper.png” width="200" height="200">
-                            </div>
-                            <div class="col pb-3">
-                                <button class="border border-secondary btn btn-info" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#new">
-                                    Upload new photo
+            <div class="text-center mt-4">
+                <!-- REQUEST TABLE -->
+                <table class ="table table-bordered">
+                    <div class="row my-2">
+                        <div class="col-4 my-3" th:each="request:${requestList}">
+                            <div class="border text-dark text-center p-2" style="background-color: LightGrey">
+                                <h2 th:text=" ${request.title}"> </h2>   
+                                <button class="btn btn-info my-2" type="button" data-bs-toggle="collapse" data-bs-target="#request">
+                                    View Details
                                 </button>
-                                <div class="collapse p-2" id="new">
-                                    <!--Submit a file code-->
-                                    <label> Upload a new photo: </label>
-                                    <input type="file" id="myFile" /><br>
-                                        <input type="submit" value="submit" />
+                                
+                                <div class="collapse" id="request">
+                                    <p th:text="${request.requestBody}"></p>
+                                    <img src=”${request.photoObjInRequest}” width="200" height="200"></img>
+                                    <div class="col pb-3">
+                                        <button class="border border-secondary btn btn-info" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#new">
+                                            Upload new photo
+                                        </button>
+                                        <div class="collapse p-2" id="new">
+                                            <!--Submit a file code-->
+                                            <label> Upload a new photo: </label>
+                                            <input type="file" id="myFile" /><br>
+                                                <input type="submit" value="submit" />
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <button class="border border-secondary btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#delete">
+                                            Delete Photos
+                                        </button>
+                                        <div class="collapse" id="delete">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <button class="border border-secondary btn btn-info" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#delete">
-                                    Delete Photos
-                                </button>
-                                <div class="collapse" id="delete">
-                                </div>
+                                <!--a class ="btn btn-primary" th:href="@{/photo/id={id}(id=${request.id})}" role="button"> Accept Request </a-->
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col my-3">
-                    <div class="border text-dark text-center p-2" style="background-color: LightGrey">
-                        <h2>Photo request title</h2>
-                        <button class="border border-secondary btn btn-info my-2" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#request1">
-                            View Details
-                        </button>
-                        <div class="collapse" id="request1">
-                            <div class="border my-3">
-                                Example request description. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do
-                             
-                            </div>
-                            <div class="my-3">
-                                <img src=”paper.png” width="200" height="200">
-                            </div>
-                            <div class="col pb-3">
-                                <button class="border border-secondary btn btn-info" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#new1">
-                                    Upload new photo
-                                </button>
-                                <div class="collapse p-2" id="new1">
-                                    <!--Submit a file code-->
-                                    <label> Upload a new photo: </label>
-                                    <input type="file" id="myFile" /><br>
-                                        <input type="submit" value="submit" />
-                                </div>
-                            </div>
-                            <div class="col">
-                                <button class="border border-secondary btn btn-info" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#delete">
-                                    Delete Photos
-                                </button>
-                                <div class="collapse" id="delete">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col my-3">
-                    <div class="border text-dark text-center p-2" style="background-color: LightGrey">
-                        <h2>Photo request title</h2>
-                        <button class="border border-secondary btn btn-info my-2" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#request2">
-                            View Details
-                        </button>
-                        <div class="collapse" id="request2">
-                            <div class="border my-3">
-                                Example request description. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis
-                                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            </div>
-                            <div class="my-3">
-                                <img src=”paper.png” width="200" height="200">
-                            </div>
-                            <div class="col pb-3">
-                                <button class="border border-secondary btn btn-info" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#new2">
-                                    Upload new photo
-                                </button>
-                                <div class="collapse p-2" id="new2">
-                                    <!--Submit a file code-->
-                                    <label> Upload a new photo: </label>
-                                    <input type="file" id="myFile" /><br>
-                                        <input type="submit" value="submit" />
-                                </div>
-                            </div>
-                            <div class="col">
-                                <button class="border border-secondary btn btn-info" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#delete">
-                                    Delete Photos
-                                </button>
-                                <div class="collapse" id="delete">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </div>             
+                </table>
             </div>
-        </div>
+>        </div>
     </body>
 </html>
