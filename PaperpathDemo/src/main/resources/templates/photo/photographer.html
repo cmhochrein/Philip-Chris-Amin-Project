@@ -44,29 +44,23 @@
 
         <!-- Main page body -->
         <div class="container">
-            <div class="container text-center mt-4">
+            <div class="text-center mt-4">
                 <a class="btn btn-primary" href="/photo/active-requests" role="button">View active requests</a>
                 <!-- REQUEST TABLE -->
                 <table class ="table table-bordered">
-                    <tbody>
-                        <tr th:each="request : ${requestList}">
-                            <td> <a th:href="@{/photo/id={id}(id=${request.id})}" th:text=" ${request.title}" > </a></td>   
-                            <td th:text=" ${request.title}"></td>
-                            <td th:text=" ${request.requestBody}"></td>
-                        </tr>
-                    </tbody>
+                    <tr>
+                        <div class="row my-2">
+                            <div class="col-4 my-3" th:each="request:${requestList}">
+                                <div class="border text-dark text-center p-2" style="background-color: LightGrey">
+                                    <h2 th:text=" ${request.title}"> </h2>   
+                                    <p th:text=" ${request.requestBody}"></p>
+                                    <a class ="btn btn-primary" th:href="@{/photo/id={id}(id=${request.id})}" role="button"> Accept Request </a>
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
                 </table>
                 <!-- END REQUEST TABLE -->
-                <div class="row my-2">
-                    <div class="col my-3">
-                        <div class="border text-dark text-center p-2" style="background-color: LightGrey">
-                            <h2>Cat image</h2>
-                            <p> Looking for a cute picture of a cat </p>
-                            <a class="btn btn-primary" href="/photo/submit-photo-form" role="button"> Accept Request</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

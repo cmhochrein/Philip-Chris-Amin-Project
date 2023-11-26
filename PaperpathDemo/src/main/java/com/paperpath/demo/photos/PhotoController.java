@@ -32,6 +32,7 @@ public class PhotoController {
         return "photo/photographer";
     }
 
+    // TO-DO: modify this so it is like getPhotoRequests but only for already accepted requests
     @GetMapping("/active-requests")
     public String getAcceptedRequests(Model model) {
         return "photo/accepted-page";
@@ -45,10 +46,6 @@ public class PhotoController {
      */
     @GetMapping("/id={requestId}")
     public String accceptRequest(@PathVariable long requestId, Model model) {
-        /*  RIGHT NOW THIS ONLY SHOWS THE UPLOAD BUTTONS, 
-        MAKE IT SHOW THE ACTUAL REQUEST, USE THE CODE FROM 
-        update-product.html PLUS THE CODE WE ALREADY HAVE 
-        FROM photographer.html TO SHOW THE REQUEST*/
         model.addAttribute("request", requestService.getRequest(requestId));
         return "photo/submit-photo";
     }
