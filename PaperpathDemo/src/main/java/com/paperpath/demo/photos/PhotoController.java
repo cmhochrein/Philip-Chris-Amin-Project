@@ -93,7 +93,7 @@ public class PhotoController {
         model.addAttribute("request", requestService.getRequest(requestId));
         return "photo/update-photo";
     }
-    
+
     /**
      * 
      * @param requestId The id of the request to be updated
@@ -106,5 +106,10 @@ public class PhotoController {
         photoService.uploadPhoto(requestId, file);
         return "redirect:/photo/active-requests";
     }
-            
+    
+    @GetMapping("delete/id={requestId}")
+    public String deletePhoto(@PathVariable long requestId){
+        requestService.deletePhoto(requestId);
+        return "redirect:/photo/active-requests";
+    }
 }

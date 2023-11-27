@@ -14,7 +14,7 @@
 
     <body>
         <div th:insert="~{/navbar/navbar :: navigation}"></div>
-       
+
         <div class="container">
             <!-- Back to bulletin button -->
             <div class="text-center mt-4">
@@ -29,12 +29,13 @@
                 <div class="col-4 my-3 mx-auto border text-dark text-center p-2" style="background-color: LightGrey">
                     <h2 th:text="${request.title}"></h2>
                     <p th:text=" ${request.requestBody}"></p>
+                    <img src=”${request.photoObjInRequest}” class="mb-3" width="400" height="400"></img>
 
                     <!-- Form section for photo upload -->
                     <div class="py-3" style="background-color: lightyellow">
                         <form method="post" th:action="@{/photo/submitphotoupdate/id={id}(id=${request.id})}" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label> Choose a file to upload: </label>
+                                <label>Choose a file to upload:</label>
                                 <input type="file" name="image" accept="image/*" class-"form-control-file">
                             </div>
                             <input type="submit" value="submit" />
@@ -43,9 +44,9 @@
 
                 </div>
             </div>
-            
+
         </div>
-        
+
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
                 integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>
@@ -53,5 +54,5 @@
                 integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossorigin="anonymous"></script>
     </body>
-    
+
 </html>

@@ -25,8 +25,7 @@ public class RequestService {
     }
 
     /**
-     * Gets a list of all requests which have been accepted by some
-     * photographer
+     * Gets a list of all requests which have been accepted by some photographer
      *
      * @return
      */
@@ -69,6 +68,12 @@ public class RequestService {
     public void savePhoto(long requestId, Photo photo) {
         Request request = reqRepo.getReferenceById(requestId);
         request.SetPhoto(photo);
+        reqRepo.save(request);
+    }
+
+    public void deletePhoto(long requestId) {
+        Request request = reqRepo.getReferenceById(requestId);
+        request.SetPhoto(null);
         reqRepo.save(request);
     }
 }

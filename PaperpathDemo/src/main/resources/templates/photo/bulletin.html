@@ -19,9 +19,9 @@
         <div class="container">
             <div class="row">
                 <div class="col mt-3"></div>
-                <h1 class="col mt-3 text-center"> Bulletin </h1>
+                <h1 class="col mt-3 text-center">Bulletin</h1>
                 <div class="col mt-4">
-                    <a class="btn btn-primary float-end" href="/photo/active-requests" role="button"> Active Requests </a>
+                    <a class="btn btn-primary border border-secondary float-end" href="/photo/active-requests" role="button">Active Requests</a>
                 </div>
             </div>
 
@@ -32,8 +32,8 @@
                         <div class="border text-dark text-center p-2" style="background-color: LightGrey">
                             <h2 style="background-color: activeborder" class="p-2" th:text=" ${request.title}"> </h2>
                             <p th:text=" ${request.requestBody}"></p>
-                            <a class ="btn btn-primary" th:href="@{/photo/id={id}(id=${request.id})}" role="button"> Accept Request </a>
-                        </div>
+                            <a class ="btn btn-primary border border-secondary" th:href="@{/photo/id={id}(id=${request.id})}" role="button">Accept Request</a>
+                        </div>  
                     </div>
                 </div>
             </table>
