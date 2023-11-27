@@ -29,38 +29,36 @@
             <!-- REQUEST TABLE -->
             <table class ="table table-bordered">
                 <div class="row my-2">
+                    
+                    <!-- Start of Thymeleaf iteration -->
                     <div class="col-4 my-3" th:each="request:${requestList}">
                         <div class="border text-dark text-center p-2" style="background-color: LightGrey">
-
-                            <h2 th:text=" ${request.title}"> </h2>   
-                            <button class="btn btn-info my-2" type="button" data-bs-toggle="collapse" data-bs-target="#request"> 
+                            
+                            <!-- Heading pulled from request title-->
+                            <h2 style="background-color: activeborder" class="p-2" th:text=" ${request.title}"> </h2>
+                            <button class="btn btn-info border border-secondary my-2" type="button" data-bs-toggle="collapse" th:href="'#request' + ${request.id}"> 
                                 View Details 
                             </button>
-
-                            <div class="collapse" id="request">
-
+                            
+                            <!-- Expanding section from clicking "View details" -->
+                            <div class="collapse" th:id="'request' + ${request.id}">
                                 <p th:text="${request.requestBody}"></p>
-                                <img src=”${request.photoObjInRequest}” class="my-3" width="200" height="200"></img>
+                                <img src=”${request.photoObjInRequest}” width="200" height="200"></img>
 
-                                <div class="col pb-3">
-                                    <button class="border border-secondary btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#new">
-                                        Upload new photo
-                                    </button>
-
-                                    <div class="collapse p-2" id="new">
-                                        <input type="file" id="myFile" /> <br/>
-                                        <input type="submit" value="submit" />
-                                    </div>
+                                <!-- Section for uploading a new photo -->
+                                <div class="text-center my-3">
+                                    <a class ="btn btn-info border border-secondary" th:href="@{/photo/updatephoto/id={id}(id=${request.id})}" role="button"> Upload new photo </a>
                                 </div>
-
-                                <div class="col">
+                                
+                                <!-- Section for deleting photos -->
+                                <div class="text-center my-2">
                                     <button class="border border-secondary btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#delete"> 
                                         Delete Photo
                                     </button>
                                     <div class="collapse" id="delete"> </div>
                                 </div>
+                                
                             </div>
-                            <!--a class ="btn btn-primary" th:href="@{/photo/id={id}(id=${request.id})}" role="button"> Accept Request </a-->
 
                         </div>
                     </div>

@@ -72,11 +72,39 @@ public class PhotoController {
      *
      * @param requestId the id associated with a request in the "requests" table
      * @param file the photo to be uploaded
-     * @return photo/accepted-page
+     * @return redirect:/photo/active-requests
      */
     @PostMapping("/submitphoto/id={requestId}")
     public String uploadImage(@PathVariable long requestId, @RequestParam("image") MultipartFile file) throws IOException {
         photoService.uploadPhoto(requestId, file);
         return "redirect:/photo/active-requests";
     }
+
+    /**
+     * Displays the "update-photo" page when a user clicks the "Upload new
+     * photo" button on the active-requests page
+     *
+     * @param requestId The id of the request to be updated
+     * @param model The model
+     * @return photo/update-photo
+     */
+    @GetMapping("/updatephoto/id={requestId}")
+    public String updateActiveRequest(@PathVariable long requestId, Model model) {
+        model.addAttribute("request", requestService.getRequest(requestId));
+        return "photo/update-photo";
+    }
+    
+    /**
+     * 
+     * @param requestId The id of the request to be updated
+     * @param file The photo to be uploaded
+     * @return redirect:/photo/active-requests
+     * @throws IOException 
+     */
+    @PostMapping("/submitphotoupdate/id={requestId}")
+    public String updateRequestPhoto(@PathVariable long requestId, @RequestParam("image") MultipartFile file) throws IOException {
+        photoService.uploadPhoto(requestId, file);
+        return "redirect:/photo/active-requests";
+    }
+            
 }
