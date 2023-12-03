@@ -1,33 +1,32 @@
 package com.paperpath.demo.editor;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class EditorService {
 
     @Autowired
-    private EditorRepository repo;
+    EditorRepository repo;
 
     public List<Editor> getAllEditors() {
         return repo.findAll();
     }
 
-    public Editor getEditorById(long id) {
-        return repo.findById(id).orElse(null);
+    public Editor getEditor(long id) {
+        return repo.getEditorById(id);
     }
 
-    public void deleteEditorById(long id) {
-        repo.deleteById(id);
+    public void deleteEditor(long id) {
+        repo.deleteEditorById(id);
     }
 
     public void saveEditor(Editor editor) {
-        repo.save(editor);
+        repo.saveEditor(editor);
     }
 
     public void updateEditor(Editor editor) {
-        repo.save(editor);
+        repo.updateEditor(editor);
     }
 }

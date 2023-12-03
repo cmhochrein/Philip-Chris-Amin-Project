@@ -18,18 +18,18 @@ public class EditorController {
     @GetMapping("/all")
     public String getAllEditors(Model model) {
         model.addAttribute("editorList", service.getAllEditors());
-        return "editor/main-page";
+        return "editor/list-editors";
     }
 
     @GetMapping("/id={id}")
     public String getEditor(@PathVariable long id, Model model) {
-        model.addAttribute("editor", service.getEditorById(id));
-        return "editor/editor-detail"; // Adjust template name
+        model.addAttribute("editor", service.getEditor(id));
+        return "editor/editor-detail";
     }
 
     @GetMapping("/delete/id={id}")
     public String deleteEditor(@PathVariable long id, Model model) {
-        service.deleteEditorById(id);
+        service.deleteEditor(id);
         return "redirect:/editor/all";
     }
 
@@ -47,11 +47,13 @@ public class EditorController {
 
     @GetMapping("/new-editor")
     public String newEditorForm(Model model) {
-        return "editor/new-editor"; // Adjust template name
+        return "editor/new-editor";
     }
 
-    @GetMapping("/main")
-    public String showMain(Model model) {
-        return "editor/main";
+    @GetMapping("/update/id={id}")
+    public String updateEditorForm(@PathVariable long id, Model model) {
+        model.addAttribute("editor", service.getEditor(id));
+        return "editor/update-editor";
     }
+
 }

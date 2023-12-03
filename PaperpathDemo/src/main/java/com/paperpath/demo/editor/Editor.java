@@ -10,10 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- *
- * @author Philip Sijerkovic
- */
 @Entity
 @Table(name = "article_request")
 @NoArgsConstructor
@@ -25,12 +21,12 @@ public class Editor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String role;
-    private String text;
+    private String userName;
+    private String request;
 
-    public Editor(String role, String text) {
-        this.role = role;
-        this.text = text;
+    public Editor(String userName, String request) {
+        this.userName = userName;
+        this.request = request;
     }
 
 }
