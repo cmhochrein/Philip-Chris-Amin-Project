@@ -17,7 +17,8 @@ import lombok.Setter;
 
 /**
  *
- * @author Chris This entity is for all requests that have been accepted, and
+ * @author Chris
+ * This entity is for all requests that have been accepted, and
  * have a photo associated with them
  */
 @Entity
