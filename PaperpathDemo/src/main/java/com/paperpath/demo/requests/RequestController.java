@@ -21,7 +21,6 @@ public class RequestController {
 
     @GetMapping("/create")
     public String createRequest(Request request) {
-
         return "writer/photo-request";
     }
     

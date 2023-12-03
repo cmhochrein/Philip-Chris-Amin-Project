@@ -28,5 +28,4 @@ public class Editor {
         this.userName = userName;
         this.request = request;
     }
-
 }
