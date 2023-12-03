@@ -1,4 +1,4 @@
-package com.paperpath.demo.requests;
+package com.paperpath.demo.photorequests;
 
 import com.paperpath.demo.photos.Photo;
 import jakarta.persistence.CascadeType;
@@ -22,12 +22,12 @@ import lombok.Setter;
  * have a photo associated with them
  */
 @Entity
-@Table(name = "requests")
+@Table(name = "photo_requests")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Request {
+public class PhotoRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class Request {
     @JoinColumn(name = "reqphoto_id", referencedColumnName = "photo_id")
     private Photo photoObjInRequest;
 
-    public Request(String title, String requestBody, Photo photo) {
+    public PhotoRequest(String title, String requestBody, Photo photo) {
         this.title = title;
         this.requestBody = requestBody;
         this.photoObjInRequest = photo;

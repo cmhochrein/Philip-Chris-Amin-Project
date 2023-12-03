@@ -1,4 +1,4 @@
-package com.paperpath.demo.requests;
+package com.paperpath.demo.photorequests;
 
 import com.paperpath.demo.photos.Photo;
 import java.util.List;
@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
  * @author Chris
  */
 @Service
-public class RequestService {
+public class PhotoRequestService {
 
     @Autowired
-    private RequestRepository reqRepo;
+    private PhotoRequestRepository reqRepo;
 
     /**
      * Gets all requests in the database
      *
      * @return A List<> of all requests
      */
-    public List<Request> getAllRequests() {
+    public List<PhotoRequest> getAllRequests() {
         return reqRepo.findAll();
     }
 
@@ -29,7 +29,7 @@ public class RequestService {
      *
      * @return
      */
-    public List<Request> getAllActiveRequests() {
+    public List<PhotoRequest> getAllActiveRequests() {
         return reqRepo.findActive();
     }
 
@@ -38,7 +38,7 @@ public class RequestService {
      *
      * @return
      */
-    public List<Request> getAllFreeRequests() {
+    public List<PhotoRequest> getAllFreeRequests() {
         return reqRepo.findAllFree();
     }
 
@@ -48,13 +48,13 @@ public class RequestService {
      * @param requestId
      * @return the photo
      */
-    public Request getRequest(long requestId) {
+    public PhotoRequest getRequest(long requestId) {
         return reqRepo.getReferenceById(requestId);
     }
 
     /*  TO-DO: THIS NEEDS TO BE COMPLETED BY AMIN TO MAKE THE PHOTO REQUEST CREATION CODE */
-    public Request uploadNewRequest(String title, String requestBody) {
-        Request request = new Request(title, requestBody, null);
+    public PhotoRequest uploadNewRequest(String title, String requestBody) {
+        PhotoRequest request = new PhotoRequest(title, requestBody, null);
         return request;
     }
 
@@ -66,13 +66,13 @@ public class RequestService {
      * @param photo a photo entity created from a user uploaded file
      */
     public void savePhoto(long requestId, Photo photo) {
-        Request request = reqRepo.getReferenceById(requestId);
+        PhotoRequest request = reqRepo.getReferenceById(requestId);
         request.SetPhoto(photo);
         reqRepo.save(request);
     }
 
     public void deletePhoto(long requestId) {
-        Request request = reqRepo.getReferenceById(requestId);
+        PhotoRequest request = reqRepo.getReferenceById(requestId);
         request.SetPhoto(null);
         reqRepo.save(request);
     }

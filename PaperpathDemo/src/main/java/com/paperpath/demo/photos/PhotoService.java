@@ -1,6 +1,6 @@
 package com.paperpath.demo.photos;
 
-import com.paperpath.demo.requests.RequestService;
+import com.paperpath.demo.photorequests.PhotoRequestService;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class PhotoService {
     @Autowired
     private PhotoRepository photoRepo;
     @Autowired
-    private RequestService requestService;
+    private PhotoRequestService requestService;
 
     /**
      * Gets a single photo entity by its ID in the database.
@@ -41,7 +41,7 @@ public class PhotoService {
         // Create the photo object 
         String fileName = StringUtils.cleanPath(picture.getOriginalFilename());
         Photo photo = new Photo(fileName, picture.getContentType(), picture.getBytes());
-        // Send it to RequestService to get saved
+        // Send it to PhotoRequestService to get saved
         requestService.savePhoto(requestId, photo);
     }
 }

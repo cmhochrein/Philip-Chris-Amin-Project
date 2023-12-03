@@ -1,6 +1,6 @@
 package com.paperpath.demo.photos;
 
-import com.paperpath.demo.requests.RequestService;
+import com.paperpath.demo.photorequests.PhotoRequestService;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class PhotoController {
     PhotoService photoService;
 
     @Autowired
-    RequestService requestService;
+    PhotoRequestService requestService;
 
     /**
      * Displays the request bulletin populated by all free requests in the

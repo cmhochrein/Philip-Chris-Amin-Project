@@ -1,6 +1,6 @@
 package com.paperpath.demo.photos;
 
-import com.paperpath.demo.requests.Request;
+import com.paperpath.demo.photorequests.PhotoRequest;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,7 +41,7 @@ public class Photo {
     public byte[] picture;  
         
     @OneToOne(mappedBy = "photoObjInRequest")
-    private Request requestObjInPhoto;
+    private PhotoRequest requestObjInPhoto;
 
     public Photo(String name, String type, byte[] picture) {
         this.name = name;

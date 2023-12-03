@@ -1,4 +1,4 @@
-package com.paperpath.demo.requests;
+package com.paperpath.demo.photorequests;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 @Controller
 @RequestMapping("/request")
-public class RequestController {
+public class PhotoRequestController {
 
     @Autowired
-    RequestService requestService;
+    PhotoRequestService photoRequestService;
 
     @GetMapping("/create")
-    public String createRequest(Request request) {
+    public String createRequest(PhotoRequest request) {
         return "writer/photo-request";
     }
     
     @PostMapping("/submitRequest")
     public String submitRequest (@PathVariable String title, @PathVariable String requestBody){
-        requestService.uploadNewRequest(title, requestBody);
+        photoRequestService.uploadNewRequest(title, requestBody);
         return "redirect:/writer/writer";
     }
 }
