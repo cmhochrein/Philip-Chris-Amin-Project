@@ -2,7 +2,12 @@ package com.paperpath.demo.navbar;
 
 import com.paperpath.demo.editor.EditorController;
 import com.paperpath.demo.photos.PhotoController;
+<<<<<<< HEAD
 import com.paperpath.demo.photorequests.PhotoRequestController;
+=======
+import com.paperpath.demo.requests.RequestController;
+import com.paperpath.demo.writer.WriterController;
+>>>>>>> 236b7eb5438255a7347f07d41025f679dc50ea41
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +29,14 @@ public class NavbarController {
     EditorController editorController;
 
     @Autowired
+<<<<<<< HEAD
     PhotoRequestController requestController;
+=======
+    RequestController requestController;
+    
+    @Autowired
+    WriterController writerController;
+>>>>>>> 236b7eb5438255a7347f07d41025f679dc50ea41
 
     @GetMapping("/photo")
     public String getPhotographerMain(Model model) {
@@ -36,8 +48,8 @@ public class NavbarController {
         return editorController.getAllEditors(model);
     }
 
-//    @GetMapping("/writer")
-//    public String getWriterMain(Model model) {
-//        return editorController.getAllEditors(model);
-//    }
+    @GetMapping("/writer")
+    public String getWriterMain(Model model) {
+        return writerController.writerMain(model);
+    }
 }
