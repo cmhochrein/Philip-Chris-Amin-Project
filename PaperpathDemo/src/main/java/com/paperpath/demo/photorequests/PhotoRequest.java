@@ -52,4 +52,8 @@ public class PhotoRequest {
     public void SetPhoto(Photo photo) {
         this.photoObjInRequest = photo;
     }
+    
+    public String getImage(){
+        return photoObjInRequest.getImage();
+    }
 }

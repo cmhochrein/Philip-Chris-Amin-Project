@@ -9,12 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 /**
  *
@@ -32,14 +32,14 @@ public class Photo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "photo_id")
     private long photoId;
-    
+
     private String name;
     private String type;
 
     @Lob
     @Column(name = "picture", columnDefinition = "LONGBLOB")
-    public byte[] picture;  
-        
+    public byte[] picture;
+
     @OneToOne(mappedBy = "photoObjInRequest")
     private PhotoRequest requestObjInPhoto;
 
@@ -47,5 +47,9 @@ public class Photo {
         this.name = name;
         this.type = type;
         this.picture = picture;
+    }
+
+    public String getImage() {
+        return Base64.encodeBase64String(this.picture);
     }
 }

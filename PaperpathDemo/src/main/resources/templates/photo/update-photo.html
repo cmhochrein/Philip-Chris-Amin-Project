@@ -29,7 +29,7 @@
                 <div class="col-4 my-3 mx-auto border text-dark text-center p-2" style="background-color: LightGrey">
                     <h2 th:text="${request.title}"></h2>
                     <p th:text=" ${request.requestBody}"></p>
-                    <img src=”${request.photoObjInRequest}” class="mb-3" width="400" height="400"></img>
+                    <img th:src="@{'data:image/jpeg;base64,'+${request.getImage()}}" class="mb-3" width="300"></img>
 
                     <!-- Form section for photo upload -->
                     <div class="py-3" style="background-color: lightyellow">

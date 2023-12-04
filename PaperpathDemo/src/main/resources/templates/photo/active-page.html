@@ -41,7 +41,7 @@
                             <!-- Expanding section from clicking "View details" -->
                             <div class="collapse" th:id="'request' + ${request.id}">
                                 <p th:text="${request.requestBody}"></p>
-                                <img src=”${request.photoObjInRequest}” width="200" height="200"></img>
+                                <img th:src="@{'data:image/jpeg;base64,'+${request.getImage()}}" width="300"></img>
 
                                 <!-- Section for uploading a new photo -->
                                 <div class ="row">
