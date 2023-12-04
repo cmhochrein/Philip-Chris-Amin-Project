@@ -42,13 +42,21 @@ public class PhotoRequestService {
         return reqRepo.findAllFree();
     }
 
+//    public List<PhotoRequest> getAllCreatorRequests(String username) {
+//        return reqRepo.getAllByCreator(username);
+//    }
+//
+    public List<PhotoRequest> getAllAcceptorRequests(String username) {
+        return reqRepo.getAllByAcceptor(username);
+    }
+
     /**
      * Get a single request by ID
      *
      * @param requestId
      * @return the photo
      */
-    public PhotoRequest getRequest(long requestId) {
+    public PhotoRequest getRequestById(long requestId) {
         return reqRepo.getReferenceById(requestId);
     }
 

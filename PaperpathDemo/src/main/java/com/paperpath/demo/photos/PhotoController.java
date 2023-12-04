@@ -44,11 +44,12 @@ public class PhotoController {
      * requests" button
      *
      * @param model the model
+     * @param acceptUsername the username of the one accepting the request
      * @return photo/accepted-page
      */
-    @GetMapping("/active-requests")
-    public String getActiveRequests(Model model) {
-        model.addAttribute("requestList", requestService.getAllActiveRequests());
+    @GetMapping("/active-requests/username={acceptUsername}")
+    public String getActiveRequests(@PathVariable String acceptUsername, Model model) {
+        model.addAttribute("AcceptorRequestList", requestService.getAllAcceptorRequests(acceptUsername));
         return "photo/active-page";
     }
 
@@ -62,7 +63,7 @@ public class PhotoController {
      */
     @GetMapping("/id={requestId}")
     public String accceptRequest(@PathVariable long requestId, Model model) {
-        model.addAttribute("request", requestService.getRequest(requestId));
+        model.addAttribute("request", requestService.getRequestById(requestId));
         return "photo/submit-photo";
     }
 
@@ -90,25 +91,25 @@ public class PhotoController {
      */
     @GetMapping("/updatephoto/id={requestId}")
     public String updateActiveRequest(@PathVariable long requestId, Model model) {
-        model.addAttribute("request", requestService.getRequest(requestId));
+        model.addAttribute("request", requestService.getRequestById(requestId));
         return "photo/update-photo";
     }
 
     /**
-     * 
+     *
      * @param requestId The id of the request to be updated
      * @param file The photo to be uploaded
      * @return redirect:/photo/active-requests
-     * @throws IOException 
+     * @throws IOException
      */
     @PostMapping("/submitphotoupdate/id={requestId}")
     public String updateRequestPhoto(@PathVariable long requestId, @RequestParam("image") MultipartFile file) throws IOException {
         photoService.uploadPhoto(requestId, file);
         return "redirect:/photo/active-requests";
     }
-    
+
     @GetMapping("delete/id={requestId}")
-    public String deletePhoto(@PathVariable long requestId){
+    public String deletePhoto(@PathVariable long requestId) {
         requestService.deletePhoto(requestId);
         return "redirect:/photo/active-requests";
     }
