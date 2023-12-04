@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Create Draft</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"/><!-- <div>comment</div> -->  
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+              integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+
+    </head>
+
+    <body>
+        <div th:insert="~{/navbar/navbar :: navigation}"></div>
+
+        <div id="form-container" class="container">
+
+            <form action="/writer/submitDraft" method="post">
+                <div class="row form-group">
+                    <div style="width: 700px; margin: 2rem auto"></div>
+                    <label for="about">Write Something!</label>
+                    <input name="about" type="hidden">
+                        <div id="editor">
+
+                        </div>
+                </div>
+                <div class="row">
+                    <button onclick="saveContent()" class="btn btn-primary" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Include the Quill library -->
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <script>
+            var quill = new Quill('#editor', {
+                theme: 'snow',
+                placholder: 'Write something...',
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{'list': 'ordered'}, {'list': 'bullet'}],
+                        ['link', 'image'],
+                        ['clean']
+                    ]
+                }
+
+            });
+
+            function saveContent() {
+            var content = quill.root.innerHTML;
+
+            // Use AJAX to send content to the server-side script
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'save_content.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send('content=' + encodeURIComponent(content));
+        }
+        </script>
+
+    </body>
+</html>

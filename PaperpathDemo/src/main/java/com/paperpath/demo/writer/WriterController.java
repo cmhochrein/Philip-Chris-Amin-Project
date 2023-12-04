@@ -20,5 +20,10 @@ public class WriterController {
         return "writer/writer";
     }
     
+    @GetMapping ("/create")
+    public String writerCreate (Model model){
+        return "writer/createDraft";
+    }
+    
     
 }
