@@ -1,8 +1,9 @@
-package com.paperpath.demo.editor;
+package com.paperpath.demo.article_request;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,11 +28,11 @@ public class EditorController {
         return "editor/editor-detail";
     }
 
-    @GetMapping("/delete/id={id}")
+    @DeleteMapping("/delete/id={id}")
     public String deleteEditor(@PathVariable long id, Model model) {
-        service.deleteEditor(id);
-        return "redirect:/editor/all";
-    }
+    service.deleteEditor(id);
+    return "redirect:/editor/all";
+}
 
     @PostMapping("/create")
     public String createEditor(Editor editor) {

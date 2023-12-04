@@ -1,6 +1,6 @@
 package com.paperpath.demo.navbar;
 
-import com.paperpath.demo.editor.EditorController;
+import com.paperpath.demo.article_request.EditorController;
 import com.paperpath.demo.photos.PhotoController;
 import com.paperpath.demo.writer.WriterController;
 import org.springframework.beans.factory.annotation.Autowired;

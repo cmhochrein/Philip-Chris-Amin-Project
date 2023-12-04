@@ -1,4 +1,4 @@
-package com.paperpath.demo.editor;
+package com.paperpath.demo.article_request;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

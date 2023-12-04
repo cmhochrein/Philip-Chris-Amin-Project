@@ -1,4 +1,4 @@
-package com.paperpath.demo.editor;
+package com.paperpath.demo.article_request;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
