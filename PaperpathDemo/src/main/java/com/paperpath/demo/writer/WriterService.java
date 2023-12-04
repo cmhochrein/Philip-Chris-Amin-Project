@@ -1,13 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.paperpath.demo.writer;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 /**
  *
- * @author yodaa
+ * @author Amin
  */
+@Service
 public class WriterService {
-    
+    @Autowired
+    private WriterRepository quillRepository;
+
+    public void saveContent(String content) {
+        Writer quillEntity = new Writer();
+        quillEntity.setContent(content);
+        quillRepository.save(quillEntity);
+    }
 }

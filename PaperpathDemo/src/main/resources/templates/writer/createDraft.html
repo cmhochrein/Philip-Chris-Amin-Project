@@ -25,6 +25,7 @@
                     <label for="about">Write Something!</label>
                     <input name="about" type="hidden">
                         <div id="editor">
+                            <textarea id="hidden-input" name="content" style="display: none;"></textarea>
 
                         </div>
                 </div>
@@ -37,35 +38,47 @@
         <!-- Include the Quill library -->
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
         <script>
-            var quill = new Quill('#editor', {
-                theme: 'snow',
-                placholder: 'Write something...',
-                modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        [{'list': 'ordered'}, {'list': 'bullet'}],
-                        ['link', 'image'],
-                        ['clean']
-                    ]
-                }
+                        var quill = new Quill('#editor', {
+                            theme: 'snow',
+                            placeholder: 'Write something...',
+                            modules: {
+                                toolbar: [
+                                    ['bold', 'italic', 'underline', 'strike'],
+                                    [{'list': 'ordered'}, {'list': 'bullet'}],
+                                    ['link', 'image'],
+                                    ['clean']
+                                ]
+                            }
+                        });
 
-            });
-
-            function saveContent() {
-            var content = quill.root.innerHTML;
-
-            // Use AJAX to send content to the server-side script
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'save_content.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log(xhr.responseText);
-                }
-            };
-            xhr.send('content=' + encodeURIComponent(content));
-        }
+                        // Sync Quill content with hidden input
+                        quill.on('text-change', function () {
+                            document.getElementById('hidden-input').value = quill.root.innerHTML;
+                        });
         </script>
+
+        <script>
+            function saveContent() {
+                var content = quill.getText();
+
+                // Use fetch to send content to the server-side endpoint
+                fetch('http://localhost:8080/save-content', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(content)
+                })
+                        .then(response => response.text())
+                        .then(data => {
+                            console.log(data);
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+            }
+        </script>
+
 
     </body>
 </html>
