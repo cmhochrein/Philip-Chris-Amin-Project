@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 /**
  *
@@ -24,8 +24,8 @@ public class PhotoRequestController {
     }
     
     @PostMapping("/submitRequest")
-    public String submitRequest (@PathVariable String title, @PathVariable String requestBody){
+    public String submitRequest (String title, String requestBody){
         photoRequestService.uploadNewRequest(title, requestBody);
-        return "redirect:/writer/writer";
+        return "writer/writer";
     }
 }
