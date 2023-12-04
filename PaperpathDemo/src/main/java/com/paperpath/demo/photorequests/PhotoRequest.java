@@ -17,8 +17,7 @@ import lombok.Setter;
 
 /**
  *
- * @author Chris
- * This entity is for all requests that have been accepted, and
+ * @author Chris This entity is for all requests that have been accepted, and
  * have a photo associated with them
  */
 @Entity
@@ -43,6 +42,12 @@ public class PhotoRequest {
     @JoinColumn(name = "reqphoto_id", referencedColumnName = "photo_id")
     private Photo photoObjInRequest;
 
+    @Column(name = "creator")
+    private String creatorUsername;
+
+    @Column(name = "acceptor")
+    private String  acceptorUsername;
+
     public PhotoRequest(String title, String requestBody, Photo photo) {
         this.title = title;
         this.requestBody = requestBody;
@@ -52,8 +57,8 @@ public class PhotoRequest {
     public void SetPhoto(Photo photo) {
         this.photoObjInRequest = photo;
     }
-    
-    public String getImage(){
+
+    public String getImage() {
         return photoObjInRequest.getImage();
     }
 }

@@ -53,9 +53,9 @@ public class PhotoRequestService {
     }
 
     /*  TO-DO: THIS NEEDS TO BE COMPLETED BY AMIN TO MAKE THE PHOTO REQUEST CREATION CODE */
-    public PhotoRequest uploadNewRequest(String title, String requestBody) {
-        PhotoRequest request = new PhotoRequest(title, requestBody, null);
-        return request;
+    public void uploadNewRequest(PhotoRequest photoRequest) {
+      
+        reqRepo.save(photoRequest);
     }
 
     /**
