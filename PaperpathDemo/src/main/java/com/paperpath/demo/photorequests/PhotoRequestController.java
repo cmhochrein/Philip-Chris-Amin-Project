@@ -25,8 +25,8 @@ public class PhotoRequestController {
     }
     
     @PostMapping("/submitRequest")
-     public String submitRequest (PhotoRequest photoRequest){
-        photoRequestService.uploadNewRequest(photoRequest);
+     public String submitRequest (String title, String requestBody){
+        photoRequestService.uploadNewRequest(title, requestBody);
         return "writer/writer";
     }
 }
