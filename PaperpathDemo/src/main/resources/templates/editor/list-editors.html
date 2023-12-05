@@ -15,7 +15,14 @@
                     }
                 }
                 type();
+                fadeInRows();
             }
+
+            function fadeInRows() {
+            $('.table tbody tr').each(function (index) {
+                $(this).addClass('fade-in-row');
+            });
+        }
             var h1Element = document.querySelector('h1');
             typeWriter(h1Element, 'Active Request List', 100);
 
@@ -88,7 +95,7 @@
                 width: 0; /* Start with 0 width */
             }
             to {
-                width: 100%; /* End with full width */
+                width: 100%; 
             }
         }
 
@@ -125,6 +132,19 @@
         th:nth-child(2),
         td:nth-child(2) {
             width: 120px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in-row {
+            animation: fadeIn 1s ease-out;
         }
     </style>
 </head>
