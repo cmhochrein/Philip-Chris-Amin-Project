@@ -3,6 +3,7 @@ package com.paperpath.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class PaperPathApplication {
 	public static void main(String[] args) {
