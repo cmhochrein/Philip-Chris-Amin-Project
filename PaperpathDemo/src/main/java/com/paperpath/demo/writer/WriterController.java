@@ -40,3 +40,4 @@ public class WriterController {
         return "writer/displayDrafts"; // Thymeleaf template name
     }
 }
+
