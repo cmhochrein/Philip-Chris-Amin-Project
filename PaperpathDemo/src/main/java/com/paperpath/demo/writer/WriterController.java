@@ -39,5 +39,31 @@ public class WriterController {
         model.addAttribute("contentList", contentList);
         return "writer/displayDrafts"; // Thymeleaf template name
     }
+
+    @RestController
+    public class QuillController {
+
+        @Autowired
+        private WriterService quillService;
+
+        @PostMapping("/save-content")
+        public String saveContent(String title, @RequestBody String content) {
+            quillService.saveContent(title, content);
+            return "/writer/writer";
+        }
+
+        @GetMapping("/get-content/{id}")
+        public ResponseEntity<String> getContentById(@PathVariable Long id) {
+            String content = quillService.getContentById(id);
+            return ResponseEntity.ok(content);
+
+        }
+
+        @GetMapping("/get-all-content")
+        public ResponseEntity<List<Writer>> getAllContent() {
+            List<Writer> contentList = quillService.getAllContent();
+            return ResponseEntity.ok(contentList);
+        }
+}
 }
 
