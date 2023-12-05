@@ -67,17 +67,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightblue">
-    <a class="navbar-brand d-flex align-items-center">
-        <img th:src="@{/images/paper.png}" width="50" height="50" class="d-inline-block vertical-align-middle">
-        &nbsp;PaperPath
-    </a>
-    <div class="container-fluid">
-        <div class="navbar-nav ms-auto">
-            <a class="btn btn-warning nav-link active" href="login">Login</a>
-        </div>
-    </div>
-</nav>
+    <div th:insert="~{/navbar/navbar :: navigation}"></div>
 
 <div class="jumbotron text-center p-5">
     <video id="video-background" autoplay muted>
