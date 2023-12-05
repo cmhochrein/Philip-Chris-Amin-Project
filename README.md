@@ -8,3 +8,4 @@ Features: Login System, Three seperate users (Editor, Photographer, Writer), API
 Selling points: Free, all in one, Collaboration tools, Easy content management
 What makes it cool: It's a place where anyone can come and collaborate with others to create their own unique product in an organized manner. 
 
+![image](https://github.com/cmhochrein/Philip-Chris-Amin-Project/assets/142520985/842085fc-ad79-4f93-80fe-c17fbf93e555)
