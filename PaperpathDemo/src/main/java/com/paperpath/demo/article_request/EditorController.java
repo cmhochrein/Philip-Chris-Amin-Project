@@ -9,16 +9,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.paperpath.demo.draft_request.DraftService;
+
 @Controller
 @RequestMapping("/editor")
 public class EditorController {
 
     @Autowired
     private EditorService service;
+    @Autowired
+    private DraftService draftService;
 
     @GetMapping("/all")
     public String getAllEditors(Model model) {
-        model.addAttribute("editorList", service.getAllEditors());
+        model.addAttribute("draftList", draftService.getAllDrafts());
         return "editor/list-editors";
     }
 
