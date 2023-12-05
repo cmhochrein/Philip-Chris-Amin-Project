@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quill.js Content Display</title>
+    <style>
+        /* Add your CSS styling for content blocks */
+        .content-block {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Container to display all content blocks -->
+    <div id="content-container"></div>
+
+    <!-- Include Quill.js script -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <!-- Your JavaScript code -->
+    <script>
+        // Function to fetch all content from Spring Boot endpoint
+        function fetchAllContent() {
+            fetch('http://localhost:8080/writer/get-all-content')
+                .then(response => response.json())
+                .then(data => {
+                    // Display each content block in the content-container
+                    const contentContainer = document.getElementById('content-container');
+                    data.forEach(item => {
+                        const blockElement = document.createElement('div');
+                        blockElement.classList.add('content-block');
+                        blockElement.textContent = item.content;
+                        contentContainer.appendChild(blockElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Call the fetchAllContent function when the page loads
+        window.onload = function() {
+            fetchAllContent();
+        };
+    </script>
+</body>
+</html>
