@@ -47,9 +47,9 @@ public class PhotoController {
      * @param acceptUsername the username of the one accepting the request
      * @return photo/accepted-page
      */
-    @GetMapping("/active-requests/username={acceptUsername}")
-    public String getActiveRequests(@PathVariable String acceptUsername, Model model) {
-        model.addAttribute("AcceptorRequestList", requestService.getAllAcceptorRequests(acceptUsername));
+    @GetMapping("/active-requests")
+    public String getActiveRequests(Model model) {
+        model.addAttribute("RequestList", requestService.getAllActiveRequests());
         return "photo/active-page";
     }
 
