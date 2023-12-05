@@ -19,9 +19,12 @@
 
         <div id="form-container" class="container">
 
-            <form action="/writer/submitDraft" method="post">
+            <form action="/writer/save-content" method="post">
                 <div class="row form-group">
-                    <div style="width: 700px; margin: 2rem auto"></div>
+                    <div class="form-group">
+                        <div style="width: 700px; margin: 2rem auto"></div>
+                        <label for="title">Title</label>
+                        <input class="form-control"  name="title" type="text"> </div>
                     <label for="about">Write Something!</label>
                     <input name="about" type="hidden">
                         <div id="editor">
@@ -38,23 +41,23 @@
         <!-- Include the Quill library -->
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
         <script>
-                        var quill = new Quill('#editor', {
-                            theme: 'snow',
-                            placeholder: 'Write something...',
-                            modules: {
-                                toolbar: [
-                                    ['bold', 'italic', 'underline', 'strike'],
-                                    [{'list': 'ordered'}, {'list': 'bullet'}],
-                                    ['link', 'image'],
-                                    ['clean']
-                                ]
-                            }
-                        });
+                var quill = new Quill('#editor', {
+                    theme: 'snow',
+                    placeholder: 'Write something...',
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic', 'underline', 'strike'],
+                            [{'list': 'ordered'}, {'list': 'bullet'}],
+                            ['link', 'image'],
+                            ['clean']
+                        ]
+                    }
+                });
 
-                        // Sync Quill content with hidden input
-                        quill.on('text-change', function () {
-                            document.getElementById('hidden-input').value = quill.root.innerHTML;
-                        });
+                // Sync Quill content with hidden input
+                quill.on('text-change', function () {
+                    document.getElementById('hidden-input').value = quill.root.innerHTML;
+                });
         </script>
 
         <script>

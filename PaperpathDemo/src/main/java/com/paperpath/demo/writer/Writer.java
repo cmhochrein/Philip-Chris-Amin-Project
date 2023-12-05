@@ -25,13 +25,17 @@ public class Writer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    
+     @Column(name = "title", columnDefinition = "VARCHAR(255)")
+    private String title;
 
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
     
-public Writer (String content){
+public Writer (String title, String content){
     this.content = content;
+    this.title = title;
 }
     
 }
