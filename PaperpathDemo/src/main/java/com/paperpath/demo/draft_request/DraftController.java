@@ -36,9 +36,16 @@ public class DraftController {
 }
 
     @PostMapping("/create")
+
+    public String createEditor(Draft draft) {
+        service.saveDraft(draft);
+        return "redirect:/writer/main-page";
+    }
+
     public String createDraft(Draft Draft) {
         service.saveDraft(Draft);
         return "redirect:/draft/all";
+
     }
 
     @PostMapping("/update")
@@ -47,9 +54,9 @@ public class DraftController {
         return "redirect:/editor/all";
     }
 
-    @GetMapping("/new-Draft")
+    @GetMapping("/new-draft")
     public String newDraftForm(Model model) {
-        return "editor/new-editor";
+        return "writer/newDraftRequest";
     }
 
     @GetMapping("/update/id={id}")
