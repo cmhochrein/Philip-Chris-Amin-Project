@@ -20,6 +20,9 @@ import java.util.List;
 @RequestMapping("/writer")
 public class WriterController {
 
+    @Autowired
+    private WriterService quillService;
+
     @GetMapping("/main-page")
     public String writerMain(Model model) {
         return "writer/writer";
@@ -28,6 +31,13 @@ public class WriterController {
     @GetMapping("/create")
     public String writerCreate(Model model) {
         return "writer/createDraft";
+    }
+
+    @GetMapping("/display")
+    public String displayCOntent(Model model) {
+        List<Writer> contentList = quillService.getAllContent();
+        model.addAttribute("contentList", contentList);
+        return "writer/displayDrafts"; // Thymeleaf template name
     }
 
     @RestController

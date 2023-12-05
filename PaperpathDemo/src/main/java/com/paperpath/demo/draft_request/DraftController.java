@@ -37,7 +37,7 @@ public class DraftController {
     @PostMapping("/create")
     public String createEditor(Draft draft) {
         service.saveDraft(draft);
-        return "redirect:/writer/mainpage";
+        return "redirect:/writer/main-page";
     }
 
     @PostMapping("/update")
