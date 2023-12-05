@@ -127,13 +127,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="editor : ${editorList}">
+                <tr th:each="draft : ${draftList}">
                     <td>
-                        <a th:href="@{/editor/id={id}(id=${editor.id})}" th:text="${editor.id}"></a>
-                        <span class="id" th:text="${editor.id}" style="display: none;"></span>
+                        <a th:href="@{/draft/id={id}(id=${draft.id})}" th:text="${draft.id}"></a>
+                        <span class="id" th:text="${draft.id}" style="display: none;"></span>
                     </td>
-                    <td th:text="${editor.userName}"></td>
-                    <td th:text="${editor.request}"></td>
+                    <td th:text="${draft.userName}"></td>
+                    <td th:text="${draft.request}"></td>
                     <td>
                         <button class="btn btn-success checkbox-button">✓</button>
                         <button class="btn btn-danger delete-button">✗</button>

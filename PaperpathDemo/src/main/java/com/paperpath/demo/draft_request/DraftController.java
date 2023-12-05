@@ -16,39 +16,46 @@ public class DraftController {
     @Autowired
     private DraftService service;
 
-    //@GetMapping("/all")
-    //public String getAllDrafts(Model model) {
-    //    model.addAttribute("draftList", service.getAllDrafts());
-    //    return "editor/list-editors";
-    //}
+    @GetMapping("/all")
+    public String getAllDrafts(Model model) {
+        model.addAttribute("draftList", service.getAllDrafts());
+        return "editor/list-editors";
+    }
+    
 
-    //@GetMapping("/id={id}")
-    //public String getEditor(@PathVariable long id, Model model) {
-    //    model.addAttribute("editor", service.getDraft(id));
-    //    return "editor/editor-detail";
-    //}
+    @GetMapping("/id={id}")
+    public String getDraft(@PathVariable long id, Model model) {
+        model.addAttribute("draft", service.getDraft(id));
+        return "editor/editor-detail";
+    }
 
-    //@DeleteMapping("/delete/id={id}")
-    //public String deleteEditor(@PathVariable long id, Model model) {
-    //service.deleteDraft(id);
-    //return "redirect:/editor/all";
-//}
+    @DeleteMapping("/delete/id={id}")
+    public String deleteDraft(@PathVariable long id, Model model) {
+    service.deleteDraft(id);
+    return "redirect:/editor/all";
+}
 
     @PostMapping("/create")
+
     public String createEditor(Draft draft) {
         service.saveDraft(draft);
         return "redirect:/writer/main-page";
+
+    public String createDraft(Draft Draft) {
+        service.saveDraft(Draft);
+        return "redirect:/draft/all";
+
     }
 
     @PostMapping("/update")
-    public String updateEditor(Draft draft) {
-        service.updateDraft(draft);
+    public String updateDraft(Draft Draft) {
+        service.updateDraft(Draft);
         return "redirect:/editor/all";
     }
 
-    @GetMapping("/new-draft")
+    @GetMapping("/new-Draft")
     public String newDraftForm(Model model) {
-        return "writer/newDraftRequest";
+        return "editor/new-editor";
     }
 
     @GetMapping("/update/id={id}")
